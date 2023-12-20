@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Operaciones con Arrays de Números</title>
+</head>
+<body>
+  <h1>Operaciones con Arrays de Números</h1>
+  
+  <label for="numeros">Ingrese números separados por coma (,):</label><br>
+  <input type="text" id="numeros"><br><br>
+  
+  <button onclick="calcularSuma()">Calcular Suma</button><br><br>
+  
+  <button onclick="calcularPromedio()">Calcular Promedio</button><br><br>
+  
+  <button onclick="ordenarAscendente()">Ordenar Ascendentemente</button><br><br>
+  
+  <label for="numeroReferencia">Número de Referencia:</label><br>
+  <input type="number" id="numeroReferencia"><br><br>
+  
+  <button onclick="obtenerMayores()">Obtener Mayores</button><br><br>
+  
+  <label for="numeros2">Ingrese más números separados por coma (,):</label><br>
+  <input type="text" id="numeros2"><br><br>
+  
+  <button onclick="combinarArrays()">Combinar Arrays</button><br><br>
+  
+  <p>Resultado:</p>
+  <p id="resultado"></p>
+
+  <script>
+    function getNumeros() {
+      const input = document.getElementById("numeros").value;
+      return input.split(",").map(num => parseFloat(num));
+    }
+
+    function getNumeros2() {
+      const input = document.getElementById("numeros2").value;
+      return input.split(",").map(num => parseFloat(num));
+    }
+
+    function mostrarResultado(resultado) {
+      document.getElementById("resultado").textContent = resultado;
+    }
+
+    function calcularSuma() {
+      const numeros = getNumeros();
+      const suma = numeros.reduce((acc, num) => acc + num, 0);
+      mostrarResultado(`Suma de elementos: ${suma}`);
+    }
+
+    function calcularPromedio() {
+      const numeros = getNumeros();
+      const promedio = numeros.length === 0 ? 0 : numeros.reduce((acc, num) => acc + num, 0) / numeros.length;
+      mostrarResultado(`Promedio de elementos: ${promedio}`);
+    }
+
+    function ordenarAscendente() {
+      const numeros = getNumeros();
+      const numerosOrdenados = numeros.slice().sort((a, b) => a - b);
+      mostrarResultado(`Array ordenado ascendente: ${numerosOrdenados}`);
+    }
+
+    function obtenerMayores() {
+      const numeros = getNumeros();
+      const numeroReferencia = parseFloat(document.getElementById("numeroReferencia").value);
+      const mayores = numeros.filter(num => num > numeroReferencia);
+      mostrarResultado(`Elementos mayores a ${numeroReferencia}: ${mayores}`);
+    }
+
+    function combinarArrays() {
+      const numeros = getNumeros();
+      const numeros2 = getNumeros2();
+      const combinados = numeros.concat(numeros2);
+      mostrarResultado(`Arrays combinados: ${combinados}`);
+    }
+  </script>
+</body>
+</html>
